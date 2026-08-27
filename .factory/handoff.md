@@ -1,12 +1,10 @@
 # Handoff — Classroom Algorithm Cards
 
-## Verification status: FAIL
+## Verification status: repaired — awaiting production header recheck
 
-Independent verification on 2026-08-27 tested commit `cb657ebd00bbdd4fa9c8d1827eec508400324719` and the live URL `https://classroom-algorithm-cards.sociobot.in/`.
+This repair addresses only the independent verifier's release-blocking cache-policy finding for candidate `cb657ebd00bbdd4fa9c8d1827eec508400324719`. The prior report remains in `.factory/verification.md` as the historical failure record.
 
-The end-to-end kit generator, print output, mobile/keyboard/accessibility behavior, privacy claims, offline reload, and service-worker update all passed. The live HTML exactly matches the candidate production build. **The release is nevertheless FAIL because the deployment serves content-hashed JS and CSS with only `Cache-Control: public, must-revalidate, max-age=30`, rather than long-lived immutable caching required for this static product.**
-
-See `.factory/verification.md` for exact commands, test evidence, browser dimensions, PWA checks, security-header review, and defects. Before release approval, set immutable caching for hashed `/assets/*` files and reverify; add CSP/frame protections as the documented low-severity hardening item.
+The build now emits `dist/staticwebapp.config.json` for the **Standard** Azure Static Web Apps deployment. It uses `cache-control: no-cache` globally, which makes HTML entrypoints and `/sw.js` revalidate, then grants exactly the current Vite content-hashed JavaScript and CSS paths `public, max-age=31536000, immutable`. Unhashed public assets are deliberately not marked immutable.
 
 ## Shipped
 
@@ -32,20 +30,22 @@ Deployment command: `npm run build`
 
 Deployment directory: `dist/` (`dist/index.html` exists at its root)
 
-Builder-reported verification (superseded by the independent FAIL status above) against the production build:
+This repair was verified against a clean `npm ci` install and the SWA local emulator:
 
 - Unit tests: 6/6 passing.
-- TypeScript and Vite production build: passing.
-- Browser smoke test at 1366 px and 390 px: one `<h1>`, `lang="en"`, `<main>`, image alt text, labeled buttons, and zero console/page errors.
-- Interaction test: switching to a 20-minute, two-team Shape machine kit produced exactly 7 sheets, 1 challenge, 10 role cards, and 20 command cards.
-- Offline reload: production app loaded, regenerated the kit, and showed its offline status with the network disabled after first visit.
-- Print smoke test: Chromium produced a 140 KB, 11-page default-kit PDF.
-- axe-core WCAG 2 A/AA/2.1 AA audit at 390 × 844: 0 violations, 26 automated checks passed.
-- Lighthouse mobile: Performance 100, Accessibility 100, Best Practices 100, SEO 92; FCP 0.9 s, LCP 1.2 s, CLS 0, Total Blocking Time 0 ms. INP is not available from a synthetic no-interaction run, so TBT and the interaction smoke test are reported instead.
-- Release payload: 11.86 KB JavaScript (4.78 KB gzip), 16.59 KB CSS (4.20 KB gzip), 52 KB WebP hero. No fonts or runtime CDN assets.
+- `npm test`: 6/6 unit tests, TypeScript/Vite production build, and the new emitted-artifact policy regression all pass.
+- Header check: current hashed CSS/JS receive `public, max-age=31536000, immutable`; `/`, `/index.html`, `/privacy/`, `/terms/`, `/sw.js`, and the unhashed hero receive `no-cache`.
+- Browser smoke at 1366 × 900 and 390 × 844: one `<h1>`, `lang="en"`, `<main>`, alt text, and no page/console errors.
+- Interaction regression: a 20-minute, two-team Shape machine kit produced 7 sheets, 1 challenge, 10 role cards, and 20 command cards.
+- PWA regression: the service worker controlled the page; after first load, offline reload returned the default 11-sheet kit and displayed the offline notice.
+- Accessibility: Playwright with axe-core WCAG 2 A/AA/2.1 AA found 0 violations (26 passing checks) at desktop and 390 px.
+- Release payload remains 11.86 KB JavaScript (4.78 KB gzip), 16.59 KB CSS (4.20 KB gzip), and 52 KB WebP hero. No fonts or runtime CDN assets.
+
+Local evidence is kept in the ignored `.factory/evidence/repair-local/` directory. The stock `@axe-core/cli` could not start because its Selenium Chrome binary is absent in this container; the equivalent audit above used the installed Playwright Chromium.
 
 ## Known gaps and next steps
 
 - The product still needs the brief’s real-world validation: at least 15 educators completing a lesson and reporting whether setup stayed under ten minutes.
 - Chromium print output was verified. Before a high-volume school rollout, sample one kit on the specific browser/printer fleet, especially US Letter printers that auto-scale the A4 layout.
 - The current three themes are intentionally bounded v1 content. Add themed packs only after educator requests reveal which contexts are most useful.
+- The existing low-severity CSP/frame-embedding hardening suggestion from `.factory/verification.md` remains intentionally out of scope for this targeted cache-policy repair.

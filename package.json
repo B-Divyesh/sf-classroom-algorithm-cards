@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
-    "test": "vitest run",
+    "build": "tsc --noEmit && vite build && node scripts/emit-swa-config.mjs",
+    "check:artifact-policy": "node scripts/check-artifact-policy.mjs",
+    "test": "vitest run && npm run build && npm run check:artifact-policy",
     "preview": "vite preview"
   },
   "devDependencies": {
