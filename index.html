@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4efdf" />
+    <meta name="description" content="Build and print a complete 20–40 minute unplugged sequencing and debugging activity for elementary classrooms." />
+    <title>Classroom Algorithm Cards — Print an unplugged coding lesson</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to kit builder</a>
+    <div id="offline-notice" class="offline-notice" role="status" hidden></div>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Classroom Algorithm Cards home"><span aria-hidden="true">→</span> Algorithm Cards</a>
+      <nav aria-label="Primary navigation">
+        <a href="#how-it-works">How it works</a>
+        <a class="nav-action" href="#builder">Build a kit</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">No devices. No prep spiral. No wrong-shaped thinking.</p>
+          <h1 id="hero-title">Put the algorithm <span>on the table.</span></h1>
+          <p class="hero-lead">Print a complete sequencing and debugging game for one elementary class period. Students arrange, test, and repair instructions together—while you get exact cues for the tricky moments.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#builder">Build my free kit <span aria-hidden="true">↓</span></a>
+            <span class="quiet-proof"><strong>Under 10 min</strong> setup · no sign-up</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="A tabletop algorithm activity made from printed cards and arrow tiles">
+          <picture>
+            <source srcset="/assets/hero-cards.webp" type="image/webp" />
+            <img src="/assets/hero-cards.jpg" width="960" height="640" fetchpriority="high" decoding="async" alt="Printed shape cards connected by wooden arrows with a small green debugging beetle token" />
+          </picture>
+          <span class="tape tape-one" aria-hidden="true"></span>
+          <span class="art-note">TEST → NOTICE → FIX</span>
+        </div>
+      </section>
+
+      <section id="how-it-works" class="how-it-works" aria-labelledby="how-title">
+        <div>
+          <p class="section-number">01 / THE WHOLE PLAN</p>
+          <h2 id="how-title">One printout. One period. Thinking you can see.</h2>
+        </div>
+        <ol class="steps">
+          <li><span>1</span><div><strong>Pick the room</strong><p>Set your time, team count, and one of three device-free challenges.</p></div></li>
+          <li><span>2</span><div><strong>Print the pack</strong><p>Get a timed guide, team roles, commands, and ready-to-run missions.</p></div></li>
+          <li><span>3</span><div><strong>Test ideas aloud</strong><p>Cards make each step visible. Bugs become clues, not grades.</p></div></li>
+        </ol>
+      </section>
+
+      <section id="builder" class="builder" aria-labelledby="builder-title">
+        <div class="builder-intro">
+          <p class="section-number">02 / BUILD YOUR KIT</p>
+          <h2 id="builder-title">Tell us what walks into the room.</h2>
+          <p>Nothing is uploaded or saved. Your selections rebuild the printable pages right here.</p>
+        </div>
+
+        <div class="builder-layout">
+          <form id="kit-form" class="control-panel">
+            <fieldset>
+              <legend><span>1</span> How much time?</legend>
+              <div class="segmented three-up">
+                <label><input type="radio" name="minutes" value="20" /><span><strong>20</strong> min</span></label>
+                <label><input type="radio" name="minutes" value="30" checked /><span><strong>30</strong> min</span></label>
+                <label><input type="radio" name="minutes" value="40" /><span><strong>40</strong> min</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend><span>2</span> How many teams?</legend>
+              <div class="number-control">
+                <input id="teams" name="teams" type="number" min="1" max="8" value="4" inputmode="numeric" aria-describedby="teams-help" />
+                <label for="teams">teams</label>
+              </div>
+              <p id="teams-help" class="field-help">Plan for 3–5 students per team. Maximum 8 teams.</p>
+            </fieldset>
+
+            <fieldset>
+              <legend><span>3</span> Choose a challenge</legend>
+              <div class="theme-options">
+                <label>
+                  <input type="radio" name="theme" value="robot-rescue" checked />
+                  <span><b>Move & map</b><strong>Robot rescue</strong><small>Students walk a precise route.</small></span>
+                </label>
+                <label>
+                  <input type="radio" name="theme" value="backpack-check" />
+                  <span><b>Everyday logic</b><strong>Backpack check</strong><small>Turn a routine into testable steps.</small></span>
+                </label>
+                <label>
+                  <input type="radio" name="theme" value="shape-machine" />
+                  <span><b>Tabletop puzzle</b><strong>Shape machine</strong><small>Transform paper shapes in order.</small></span>
+                </label>
+              </div>
+            </fieldset>
+
+            <label class="check-control"><input type="checkbox" name="inkSaver" checked /><span aria-hidden="true"></span><strong>Use ink-saver mode</strong><small>Keeps card backgrounds white with bold black outlines.</small></label>
+
+            <div class="print-action">
+              <button id="print-button" class="button primary" type="button">Print / save PDF <span aria-hidden="true">↗</span></button>
+              <p id="builder-status" role="status" aria-live="polite">Preparing your printable kit…</p>
+            </div>
+          </form>
+
+          <section class="preview-wrap" aria-labelledby="preview-title">
+            <div class="preview-heading">
+              <div><p class="section-number">LIVE PREVIEW</p><h2 id="preview-title">Your classroom pack</h2></div>
+              <span>Paper size: A4 / Letter friendly</span>
+            </div>
+            <div id="print-preview" class="print-preview" aria-live="off" aria-busy="false"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="teacher-notes" aria-labelledby="notes-title">
+        <p class="section-number">03 / BUILT FOR THE REAL ROOM</p>
+        <h2 id="notes-title">A better answer than “that’s wrong.”</h2>
+        <div class="notes-grid">
+          <article><span aria-hidden="true">≠</span><h3>Many paths can work</h3><p>The guide checks whether a sequence is followable and reaches the goal—not whether it matches one answer key.</p></article>
+          <article><span aria-hidden="true">⊘</span><h3>Debug without blame</h3><p>Students name the first unexpected result, change one thing, and test again. The bug belongs to the cards.</p></article>
+          <article><span aria-hidden="true">◎</span><h3>Safe roles for everyone</h3><p>Role prompts distribute movement, materials, speaking, and observing. Safety notes are specific to each activity.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div><a class="brand footer-brand" href="/"><span aria-hidden="true">→</span> Algorithm Cards</a><p>Free, printable, unplugged computing activities for busy classrooms.</p></div>
+      <div class="footer-links"><a href="#builder">Build a kit</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="https://github.com/B-Divyesh/sf-classroom-algorithm-cards" rel="noreferrer">Source code</a></div>
+      <p class="provenance">Original illustrations and card designs made for this project. No tracking. No student data. © 2026 Sociobot.</p>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
