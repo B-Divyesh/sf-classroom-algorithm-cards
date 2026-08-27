@@ -1,0 +1,30 @@
+{
+  "slug": "classroom-algorithm-cards",
+  "title": "Classroom Algorithm Cards",
+  "territory": "games-creative",
+  "user": "An elementary teacher or volunteer teaching a one-off computing lesson who needs printable, collaborative, unplugged activities that make sequencing and debugging visible.",
+  "evidence": [
+    {
+      "url": "https://hn.algolia.com/api/v1/items/45643716",
+      "date": "2025-10-20",
+      "quote_or_summary": "A parent returning to teach 4th/5th graders asks for help improving an introductory software-development classroom activity after a successful PB&J sequencing demo."
+    },
+    {
+      "url": "https://github.com/ankitects/anki/issues/4443",
+      "date": "2025-11-24",
+      "quote_or_summary": "Anki contributors request flexible grading and configurable answer keys, reflecting a broader need to recognize multiple valid ways learners can express a solution."
+    }
+  ],
+  "recurrence": "A concrete 2025 elementary-classroom request and a separate flexible-answer request point to the same teaching need: make process observable without falsely marking alternative reasoning wrong.",
+  "current_workaround": "Improvise a PB&J demo, download random worksheets, or use a screen-based coding game that may not fit a single classroom period.",
+  "incumbents_and_gap": "Code.org and Scratch provide strong curricula, but a visiting adult often needs a 30-minute, device-free, printable sequence/debug kit with teacher cues.",
+  "smallest_useful_product": "A static generator for printable role cards, instruction cards, challenge cards, and a one-page facilitation guide for 20–40 minute sequencing/debugging games. Non-goals: a full computer-science curriculum, student accounts, or AI-generated lesson plans.",
+  "success_measure": "At least 15 educators run a complete activity from download to wrap-up in one period, and 80% say setup took under ten minutes.",
+  "artifact_class": "static-web",
+  "monetization": "free — individual teachers and volunteers need immediate classroom access; optional themed packs can follow only if requested.",
+  "constraints": "Use original, permissively licensed illustrations; meet print accessibility needs; avoid collecting child data; include teacher safety and group-management notes.",
+  "est_build_effort": "S",
+  "why_distinct": "It serves the overlooked one-off, unplugged lesson with multiple-valid-answer facilitation rather than competing with a year-long coding platform.",
+  "confidence": 4,
+  "state": "RESEARCHED"
+}
