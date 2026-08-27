@@ -1,5 +1,13 @@
 # Handoff — Classroom Algorithm Cards
 
+## Verification status: FAIL
+
+Independent verification on 2026-08-27 tested commit `cb657ebd00bbdd4fa9c8d1827eec508400324719` and the live URL `https://classroom-algorithm-cards.sociobot.in/`.
+
+The end-to-end kit generator, print output, mobile/keyboard/accessibility behavior, privacy claims, offline reload, and service-worker update all passed. The live HTML exactly matches the candidate production build. **The release is nevertheless FAIL because the deployment serves content-hashed JS and CSS with only `Cache-Control: public, must-revalidate, max-age=30`, rather than long-lived immutable caching required for this static product.**
+
+See `.factory/verification.md` for exact commands, test evidence, browser dimensions, PWA checks, security-header review, and defects. Before release approval, set immutable caching for hashed `/assets/*` files and reverify; add CSP/frame protections as the documented low-severity hardening item.
+
 ## Shipped
 
 - A responsive, static kit generator for 20, 30, or 40 minute unplugged sequencing/debugging lessons.
@@ -24,7 +32,7 @@ Deployment command: `npm run build`
 
 Deployment directory: `dist/` (`dist/index.html` exists at its root)
 
-Verification completed on 2026-08-27 against the production build:
+Builder-reported verification (superseded by the independent FAIL status above) against the production build:
 
 - Unit tests: 6/6 passing.
 - TypeScript and Vite production build: passing.
