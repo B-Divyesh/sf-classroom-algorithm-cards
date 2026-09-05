@@ -145,7 +145,7 @@ test('quality: routes, metadata, responsive layout, security headers, and access
     const axeSource = await readFile('node_modules/axe-core/axe.min.js', 'utf8');
     await a11yPage.addScriptTag({ content: axeSource });
     const results = await a11yPage.evaluate(async () => (window as typeof window & { axe: { run: () => Promise<{ violations: Array<{ impact: string | null }> }> } }).axe.run());
-    expect(results.violations.filter((violation) => violation.impact === 'serious' || violation.impact === 'critical')).toEqual([]);
+    expect(results.violations).toEqual([]);
   } finally {
     await a11yContext.close();
   }
