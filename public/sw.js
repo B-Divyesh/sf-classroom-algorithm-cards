@@ -1,5 +1,5 @@
-const CACHE = 'algorithm-cards-v3';
-const SHELL = ['/', '/index.html', '/assets/hero-cards.webp', '/assets/hero-cards.jpg', '/favicon.svg', '/apple-touch-icon.png', '/privacy/', '/terms/', '/legal.css', '/404.html'];
+const CACHE = 'algorithm-cards-v4';
+const SHELL = ['/', '/index.html', '/assets/hero-cards.avif', '/assets/hero-cards.webp', '/assets/hero-cards.jpg', '/favicon.svg', '/apple-touch-icon.png', '/privacy/', '/terms/', '/legal.css', '/404.html'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {

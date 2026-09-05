@@ -26,8 +26,12 @@ if (!headers['Permissions-Policy'] || headers['X-Frame-Options'] !== 'DENY') {
   throw new Error('Expected Permissions-Policy and X-Frame-Options headers in generated static configuration.');
 }
 
-if (config.navigationFallback?.rewrite !== '/index.html' || !config.navigationFallback.exclude?.includes('/404')) {
-  throw new Error('Expected an index navigation fallback that leaves the designed 404 route reachable.');
+if (config.navigationFallback) {
+  throw new Error('Expected no catch-all navigation fallback so unknown routes return the designed HTTP 404.');
+}
+
+if (!config.routes?.some((route) => route.route === '/demo' && route.rewrite === '/index.html')) {
+  throw new Error('Expected the explicit /demo client route to serve the application shell.');
 }
 
 if (config.responseOverrides?.['404']?.rewrite !== '/404.html' || config.responseOverrides?.['404']?.statusCode !== 404) {

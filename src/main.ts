@@ -21,14 +21,40 @@ const routeAnnouncement = requiredElement<HTMLElement>('#route-announcement');
 const siteUrl = 'https://classroom-algorithm-cards.sociobot.in';
 const realStorageKey = 'real:classroom-algorithm-cards:settings';
 const demoStorageKey = 'demo:classroom-algorithm-cards:settings';
+const routeFocusKey = 'classroom-algorithm-cards:route-focus';
 const sampleSettings: KitSettings = { minutes: 20, teams: 2, theme: 'shape-machine', inkSaver: true };
 const demoMode = /^\/demo\/?$/.test(window.location.pathname);
+
+function consumeRouteFocus(): boolean {
+  try {
+    const shouldFocus = window.sessionStorage.getItem(routeFocusKey) === 'true';
+    window.sessionStorage.removeItem(routeFocusKey);
+    return shouldFocus;
+  } catch {
+    return false;
+  }
+}
+
+function requestRouteFocus(): void {
+  try {
+    window.sessionStorage.setItem(routeFocusKey, 'true');
+  } catch {
+    // Focusing the new heading is a progressive enhancement when storage is blocked.
+  }
+}
+
+const shouldFocusRouteHeading = consumeRouteFocus();
 
 const escapeHtml = (value: string): string => value.replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[char] ?? char);
 
 function setMeta(selector: string, content: string): void {
   const element = document.querySelector<HTMLMetaElement>(selector);
   if (element) element.content = content;
+}
+
+function announceAndFocusRoute(): void {
+  routeAnnouncement.textContent = demoMode ? 'Demo opened.' : 'Kit builder opened.';
+  window.requestAnimationFrame(() => heroTitle.focus());
 }
 
 function setRouteMetadata(): void {
@@ -48,7 +74,9 @@ function setRouteMetadata(): void {
   if (canonical) canonical.href = `${siteUrl}${route}`;
   if (demoMode) {
     heroTitle.textContent = 'Sample classroom kit';
-    routeAnnouncement.textContent = 'Demo opened.';
+  }
+  if (shouldFocusRouteHeading) {
+    announceAndFocusRoute();
   }
 }
 
@@ -222,6 +250,10 @@ resetDemoButton.addEventListener('click', () => {
 
 startRealLink.addEventListener('click', clearDemoSettings);
 
+document.querySelectorAll<HTMLAnchorElement>('a[href="/demo"], a[href="/"]').forEach((link) => {
+  link.addEventListener('click', requestRouteFocus);
+});
+
 function updateNetworkState(): void {
   const offline = !navigator.onLine;
   offlineNotice.hidden = !offline;
@@ -232,6 +264,13 @@ window.addEventListener('online', updateNetworkState);
 window.addEventListener('offline', updateNetworkState);
 updateNetworkState();
 setRouteMetadata();
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) {
+    consumeRouteFocus();
+    announceAndFocusRoute();
+  }
+});
+window.addEventListener('pagehide', requestRouteFocus);
 if (!demoMode) clearDemoSettings();
 document.body.classList.toggle('demo-mode', demoMode);
 demoBanner.hidden = !demoMode;

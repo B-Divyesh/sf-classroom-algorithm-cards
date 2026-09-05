@@ -23,7 +23,7 @@ This is deliberately a single light treatment. The product's destination is whit
 
 Ink is the default text on yellow/mint/cream. White is used on blue and orange only where contrast clears 4.5:1. State is always paired with an icon or word, never color alone.
 
-Spacing follows an 8 px rhythm (`4, 8, 16, 24, 32, 48, 64`). Corners stay at 0–8 px; cards use a 3 px ink rule and a 5 px hard shadow. Desktop content caps at 1180 px with readable measures of 45–75 characters. Phone layouts stack, hide the decorative quick-demo illustration, and place generation controls before the preview.
+Spacing follows an 8 px rhythm (`4, 8, 16, 24, 32, 48, 64`). Corners stay at 0–8 px; cards use a 3 px ink rule and a 5 px hard shadow. Desktop content caps at 1180 px with readable measures of 45–75 characters. Normal phone layouts stack, hide the decorative illustration, and place generation controls before the preview. The demo instead shows its populated preview immediately below its persistent sample label, then its controls, so its first screen proves the sample result.
 
 ## Type
 
@@ -51,4 +51,4 @@ Only state changes move: selected controls press 2 px over 150 ms, preview pages
 
 **Subject:** overhead tabletop arrangement of hand-cut classroom sequencing cards, chunky wooden direction arrows, paper clips, one small cardboard beetle-shaped debugging token. **World/materials:** recycled cream paper, cobalt and yellow screen-print ink, plywood, black marker rules. **Light/lens:** clean soft daylight, straight 90-degree overhead, modest natural paper texture, all objects fully visible. **Palette words:** warm cream, inky black, school-bus yellow, action cobalt, a touch of mint. **Composition:** rectangular landscape, open quiet area at upper left, energetic diagonal card sequence to lower right. **Negative list:** no people or hands, no readable letters or numbers, no logos, no watermark, no gradients, no glossy 3D rendering, no brand characters, no electronic devices, no cluttered background.
 
-Asset generation uses the factory image model deployment `factory-image` through `/opt/fleet/lib/gen-image.sh`, generated 2026-08-27. Generated imagery is original for this product. The exact prompt is retained beside the source image in `assets/src/hero-cards.json`; optimized WebP/AVIF derivatives ship with the site.
+Asset generation uses the factory image model deployment `factory-image` through `/opt/fleet/lib/gen-image.sh`, generated 2026-08-27. Generated imagery is original for this product. The exact prompt is retained beside the source image in `assets/src/hero-cards.json`; optimized WebP and AVIF derivatives ship with the site. The AVIF is a 960 × 640 derivative of that source, encoded on 2026-09-05 with `avifenc` (libavif 1.0.4) at 17,781 bytes.

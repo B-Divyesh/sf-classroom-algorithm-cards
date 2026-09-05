@@ -28,10 +28,6 @@ export function staticWebAppsConfig(assetPaths) {
       'X-Content-Type-Options': 'nosniff',
       'X-Frame-Options': 'DENY',
     },
-    navigationFallback: {
-      rewrite: '/index.html',
-      exclude: ['/assets/*', '/404', '/404.html', '/apple-touch-icon.png', '/favicon.svg', '/legal.css', '/privacy/*', '/robots.txt', '/site.webmanifest', '/sitemap.xml', '/sw.js', '/terms/*'],
-    },
     responseOverrides: {
       '404': {
         rewrite: '/404.html',
@@ -39,6 +35,10 @@ export function staticWebAppsConfig(assetPaths) {
       },
     },
     routes: [
+      // The app only owns this explicit client route. Leaving navigation
+      // fallback disabled lets typoed and stale paths reach the real 404.
+      { route: '/demo', rewrite: '/index.html' },
+      { route: '/demo/', rewrite: '/index.html' },
       // This status-only route intentionally flows through responseOverrides.
       // Azure rejects a route that combines statusCode and rewrite.
       { route: '/404', statusCode: 404 },

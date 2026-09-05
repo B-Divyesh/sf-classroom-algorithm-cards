@@ -40,7 +40,7 @@ With `npm run serve:dist` running in another terminal, verify the rendered route
 ./verify-url.sh http://127.0.0.1:4173/demo
 ```
 
-`npm run build` is the static deployment command. It writes `dist/` with `index.html` at its root and generates `dist/staticwebapp.config.json` with cache, security-header, navigation fallback, and designed-404 rules.
+`npm run build` is the static deployment command. It writes `dist/` with `index.html` at its root and generates `dist/staticwebapp.config.json` with cache, security-header, explicit `/demo` route, and designed-404 rules.
 
 ## Product files
 

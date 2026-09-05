@@ -50,9 +50,44 @@
   },
   {
     "id": "private-browser-choices",
-    "claim": "The app does not send kit settings to another service or load tracking scripts.",
+    "claim": "The app does not send normal or sample kit settings to another service or load tracking scripts.",
     "where": "privacy page, README",
     "test": "npm run test:claims -- --grep @claim:private-browser-choices",
     "sandbox": "Fresh demo browser context records every request while settings change and requires same-origin GET requests only."
+  },
+  {
+    "id": "ink-saver-white-cards",
+    "claim": "Ink-saver mode prints white card fills with bold black outlines.",
+    "where": "ink-saver control",
+    "test": "npm run test:claims -- --grep @claim:ink-saver-white-cards",
+    "sandbox": "Fresh demo; use the shipped ink-saver setting, switch to print media, and check the card fill and outline users will print."
+  },
+  {
+    "id": "role-card-duties",
+    "claim": "Role cards assign following, arranging, checking, card keeping, and reporting.",
+    "where": "landing teaching notes",
+    "test": "npm run test:claims -- --grep @claim:role-card-duties",
+    "sandbox": "Fresh demo; inspect both teams' populated role cards and their named duties."
+  },
+  {
+    "id": "activity-safety-notes",
+    "claim": "Each activity includes an activity-specific safety note.",
+    "where": "landing teaching notes",
+    "test": "npm run test:claims -- --grep @claim:activity-safety-notes",
+    "sandbox": "Fresh demo; select every activity and read its safety guidance in the generated guide."
+  },
+  {
+    "id": "demo-settings-removed",
+    "claim": "Demo settings are removed when you choose Start for real.",
+    "where": "privacy page",
+    "test": "npm run test:claims -- --grep @claim:demo-settings-removed",
+    "sandbox": "Fresh demo; change a sample setting, choose Start for real, and verify the demo browser-storage entry is gone."
+  },
+  {
+    "id": "offline-cache-only-app-files",
+    "claim": "The offline cache contains app files, not your printed kit or classroom names.",
+    "where": "privacy page",
+    "test": "npm run test:claims -- --grep @claim:offline-cache-only-app-files",
+    "sandbox": "Fresh demo; activate the service worker, change the kit, and verify that Cache Storage has only public app-shell paths."
   }
 ]

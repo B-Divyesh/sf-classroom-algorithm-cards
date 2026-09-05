@@ -16,7 +16,7 @@ button { font: inherit; }
 
 .site-header, .site-footer { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
 .site-header { min-height: 80px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 3px solid #171713; }
-.brand { display: inline-flex; align-items: center; gap: 8px; color: #171713; font-family: "Arial Black", Arial, sans-serif; font-weight: 900; line-height: 1; letter-spacing: -.04em; text-decoration: none; text-transform: uppercase; }
+.brand { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; gap: 8px; color: #171713; font-family: "Arial Black", Arial, sans-serif; font-weight: 900; line-height: 1; letter-spacing: -.04em; text-decoration: none; text-transform: uppercase; }
 .brand span { width: 34px; height: 34px; display: grid; place-items: center; background: #ffd84a; border: 2px solid #171713; }
 .site-header nav { display: flex; align-items: center; gap: 26px; }
 .site-header nav a { min-height: 44px; display: inline-flex; align-items: center; }
@@ -26,13 +26,17 @@ main { width: min(760px, calc(100% - 32px)); margin-inline: auto; padding-block:
 h1, h2 { font-family: "Arial Black", Arial, sans-serif; line-height: 1.05; letter-spacing: -.04em; text-transform: uppercase; }
 h1 { max-width: 680px; margin: 12px 0 28px; font-size: clamp(2.5rem, 8vw, 4.5rem); }
 h2 { margin-top: 42px; font-size: 1.35rem; }
-.kicker { display: inline-block; margin: 0; padding: 5px 9px; background: #ffd84a; border: 2px solid #171713; font-family: "Arial Black", Arial, sans-serif; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+.kicker { display: inline-block; margin: 0; padding: 5px 9px; background: #ffd84a; border: 2px solid #171713; font-family: "Arial Black", Arial, sans-serif; font-size: 1rem; letter-spacing: .08em; text-transform: uppercase; }
 .summary { padding: 18px; background: #fffdf7; border: 3px solid #171713; box-shadow: 5px 5px 0 #171713; font-size: 1.1rem; }
 .site-footer { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; padding-block: 44px; border-top: 3px solid #171713; }
 .site-footer p { max-width: 520px; margin: 14px 0 0; color: #56564d; }
 .footer-links { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; align-content: start; }
 .footer-links a { min-height: 44px; display: flex; align-items: center; }
-.provenance { grid-column: 1 / -1; padding-top: 18px; border-top: 1px solid #56564d; font-size: .8rem; }
+.provenance { grid-column: 1 / -1; padding-top: 18px; border-top: 1px solid #56564d; font-size: 1rem; }
+.recovery-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+main .nav-action, main .touch-link { min-height: 44px; display: inline-flex; align-items: center; padding: 8px 12px; }
+main .nav-action { color: #171713; text-decoration: none; background: #fffdf7; border: 2px solid #171713; box-shadow: 3px 3px 0 #171713; }
+main .touch-link { font-weight: 800; }
 
 @media (max-width: 640px) {
   .site-header, .site-footer { width: min(100% - 32px, 1180px); }
@@ -40,7 +44,7 @@ h2 { margin-top: 42px; font-size: 1.35rem; }
   .site-header nav { gap: 0; }
   .site-header nav a:first-child, .site-header nav a:nth-child(3) { display: none; }
   .site-header .nav-action { padding-inline: 10px; }
-  .brand { font-size: .83rem; }
+  .brand { font-size: 1rem; }
   .site-footer { grid-template-columns: 1fr; }
   .provenance { grid-column: 1; }
 }
