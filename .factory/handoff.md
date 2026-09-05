@@ -1,5 +1,16 @@
 # Handoff — Classroom Algorithm Cards
 
+## Review 2
+
+- Verdict: **FAIL** — 7 findings and 5 untested public claims.
+- Implementation reviewed: `def411b681e1f81e600f64d2a92f5da5da331402`.
+- Documentation base: `bd040efe8e6295a4f71a1a479518fe3f211c359e`.
+- Full report: `.factory/review-2.md`.
+
+The core product, all eight declared claim commands, clean build, live candidate parity, one-click isolated demo, PDF, offline reload, keyboard path, axe audits, security headers, and performance checks passed. Review 2 remains a FAIL because five additional public statements lack complete tagged tests; unknown extensionless routes bypass the designed 404; the landing skeleton is out of order and lacks the required privacy/non-goals section; touch targets and several text styles are undersized; demo navigation does not focus the new h1; and the promised AVIF derivative is absent.
+
+No product code was changed during this review.
+
 ## Independent verification 3
 
 - Verdict: **PASS** — zero findings and zero untested public claims.
