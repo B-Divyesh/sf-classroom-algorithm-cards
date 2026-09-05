@@ -26,6 +26,10 @@ if (!headers['Permissions-Policy'] || headers['X-Frame-Options'] !== 'DENY') {
   throw new Error('Expected Permissions-Policy and X-Frame-Options headers in generated static configuration.');
 }
 
+if (config.mimeTypes?.['.avif'] !== 'image/avif') {
+  throw new Error('Expected the generated Static Web Apps configuration to serve AVIF art as image/avif.');
+}
+
 if (config.navigationFallback) {
   throw new Error('Expected no catch-all navigation fallback so unknown routes return the designed HTTP 404.');
 }

@@ -28,6 +28,9 @@ export function staticWebAppsConfig(assetPaths) {
       'X-Content-Type-Options': 'nosniff',
       'X-Frame-Options': 'DENY',
     },
+    mimeTypes: {
+      '.avif': 'image/avif',
+    },
     responseOverrides: {
       '404': {
         rewrite: '/404.html',
