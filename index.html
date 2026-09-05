@@ -4,17 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f4efdf" />
-    <meta name="description" content="Build and print a complete 20–40 minute unplugged sequencing and debugging activity for elementary classrooms." />
+    <meta name="description" content="Print a device-free sequencing and debugging activity for elementary teachers and volunteers." />
     <title>Classroom Algorithm Cards — Print an unplugged coding lesson</title>
+    <link rel="canonical" href="https://classroom-algorithm-cards.sociobot.in/" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Classroom Algorithm Cards" />
+    <meta property="og:title" content="Classroom Algorithm Cards — Print a coding activity" />
+    <meta property="og:description" content="Print a device-free sequencing and debugging activity for elementary teachers and volunteers." />
+    <meta property="og:image" content="https://classroom-algorithm-cards.sociobot.in/assets/social-card.jpg" />
+    <meta property="og:url" content="https://classroom-algorithm-cards.sociobot.in/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Classroom Algorithm Cards — Print a coding activity" />
+    <meta name="twitter:description" content="Print a device-free sequencing and debugging activity for elementary teachers and volunteers." />
+    <meta name="twitter:image" content="https://classroom-algorithm-cards.sociobot.in/assets/social-card.jpg" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to kit builder</a>
     <div id="offline-notice" class="offline-notice" role="status" hidden></div>
+    <p id="route-announcement" class="visually-hidden" aria-live="polite"></p>
+    <aside id="demo-banner" class="demo-banner" aria-label="Demo controls" hidden>
+      <p><strong>Demo — sample data, nothing is saved to your real kit.</strong> This sample makes a 20-minute Shape machine kit for two teams.</p>
+      <div><button id="reset-demo" type="button" class="text-button">Reset demo</button><a id="start-real" class="button small-button" href="/">Start for real</a></div>
+    </aside>
     <header class="site-header">
       <a class="brand" href="/" aria-label="Classroom Algorithm Cards home"><span aria-hidden="true">→</span> Algorithm Cards</a>
       <nav aria-label="Primary navigation">
         <a href="#how-it-works">How it works</a>
+        <a href="/demo">Demo</a>
+        <a href="/privacy/">Privacy</a>
         <a class="nav-action" href="#builder">Build a kit</a>
       </nav>
     </header>
@@ -22,13 +42,14 @@
     <main id="main">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow">No devices. No prep spiral. No wrong-shaped thinking.</p>
-          <h1 id="hero-title">Put the algorithm <span>on the table.</span></h1>
-          <p class="hero-lead">Print a complete sequencing and debugging game for one elementary class period. Students arrange, test, and repair instructions together—while you get exact cues for the tricky moments.</p>
+          <p class="eyebrow">Printable group activity</p>
+          <h1 id="hero-title" tabindex="-1">Print a device-free coding activity</h1>
+          <p class="hero-lead">For elementary teachers and volunteers running one computing lesson, print cards that make sequencing and debugging visible.</p>
           <div class="hero-actions">
-            <a class="button primary" href="#builder">Build my free kit <span aria-hidden="true">↓</span></a>
-            <span class="quiet-proof"><strong>Under 10 min</strong> setup · no sign-up</span>
+            <a class="button primary" href="/demo">Try it with sample data <span aria-hidden="true">→</span></a>
+            <span class="quiet-proof">Opens a 20-minute Shape machine kit for two teams.</span>
           </div>
+          <ul class="plain-facts" aria-label="Product facts"><li>Price: free.</li><li>Sample changes stay separate from your saved kit.</li><li>Works offline after the first visit.</li></ul>
         </div>
         <div class="hero-art">
           <picture>
@@ -36,27 +57,27 @@
             <img src="/assets/hero-cards.jpg" width="960" height="640" fetchpriority="high" decoding="async" alt="Printed shape cards connected by wooden arrows with a small green debugging beetle token" />
           </picture>
           <span class="tape tape-one" aria-hidden="true"></span>
-          <span class="art-note">TEST → NOTICE → FIX</span>
+          <span class="art-note">PRINTED TEAM CARDS</span>
         </div>
       </section>
 
       <section id="how-it-works" class="how-it-works" aria-labelledby="how-title">
         <div>
-          <p class="section-number">01 / THE WHOLE PLAN</p>
-          <h2 id="how-title">One printout. One period. Thinking you can see.</h2>
+          <p class="section-number">01 / HOW IT WORKS</p>
+          <h2 id="how-title">Make a classroom kit in three steps</h2>
         </div>
         <ol class="steps">
-          <li><span>1</span><div><strong>Pick the room</strong><p>Set your time, team count, and one of three device-free challenges.</p></div></li>
-          <li><span>2</span><div><strong>Print the pack</strong><p>Get a timed guide, team roles, commands, and ready-to-run missions.</p></div></li>
-          <li><span>3</span><div><strong>Test ideas aloud</strong><p>Cards make each step visible. Bugs become clues, not grades.</p></div></li>
+          <li><span>1</span><div><strong>Choose the activity</strong><p>Set the time, team count, and challenge.</p></div></li>
+          <li><span>2</span><div><strong>Print the kit</strong><p>Get a guide, roles, instruction cards, and challenge cards.</p></div></li>
+          <li><span>3</span><div><strong>Test and debug</strong><p>Teams follow cards, spot surprises, and revise steps.</p></div></li>
         </ol>
       </section>
 
       <section id="builder" class="builder" aria-labelledby="builder-title">
         <div class="builder-intro">
           <p class="section-number">02 / BUILD YOUR KIT</p>
-          <h2 id="builder-title">Tell us what walks into the room.</h2>
-          <p>Nothing is uploaded or saved. Your selections rebuild the printable pages right here.</p>
+          <h2 id="builder-title">Choose your activity settings</h2>
+          <p>Normal kit choices stay in this browser. Demo choices stay in a separate sample space.</p>
         </div>
 
         <div class="builder-layout">
@@ -108,7 +129,7 @@
           <section class="preview-wrap" aria-labelledby="preview-title">
             <div class="preview-heading">
               <div><p class="section-number">LIVE PREVIEW</p><h2 id="preview-title">Your classroom pack</h2></div>
-              <span>Paper size: A4 / Letter friendly</span>
+              <span>Printable pages</span>
             </div>
             <div id="print-preview" class="print-preview" role="region" tabindex="0" aria-labelledby="preview-title" aria-live="off" aria-busy="false"></div>
           </section>
@@ -116,20 +137,20 @@
       </section>
 
       <section class="teacher-notes" aria-labelledby="notes-title">
-        <p class="section-number">03 / BUILT FOR THE REAL ROOM</p>
-        <h2 id="notes-title">A better answer than “that’s wrong.”</h2>
+        <p class="section-number">03 / TEACHING NOTES</p>
+        <h2 id="notes-title">Guide students through testing and debugging</h2>
         <div class="notes-grid">
-          <article><span aria-hidden="true">≠</span><h3>Many paths can work</h3><p>The guide checks whether a sequence is followable and reaches the goal—not whether it matches one answer key.</p></article>
-          <article><span aria-hidden="true">⊘</span><h3>Debug without blame</h3><p>Students name the first unexpected result, change one thing, and test again. The bug belongs to the cards.</p></article>
-          <article><span aria-hidden="true">◎</span><h3>Safe roles for everyone</h3><p>Role prompts distribute movement, materials, speaking, and observing. Safety notes are specific to each activity.</p></article>
+          <article><span aria-hidden="true">≠</span><h3>Accept different working sequences</h3><p>Use the guide to ask whether another person can follow the steps and reach the goal.</p></article>
+          <article><span aria-hidden="true">⊘</span><h3>Find the first surprise</h3><p>Students change one card and test again after an unexpected result.</p></article>
+          <article><span aria-hidden="true">◎</span><h3>Give each student a role</h3><p>Role cards share movement, materials, speaking, and observing. Each activity includes a safety note.</p></article>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div><a class="brand footer-brand" href="/"><span aria-hidden="true">→</span> Algorithm Cards</a><p>Free, printable, unplugged computing activities for busy classrooms.</p></div>
-      <div class="footer-links"><a href="#builder">Build a kit</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="https://github.com/B-Divyesh/sf-classroom-algorithm-cards" rel="noreferrer">Source code</a></div>
-      <p class="provenance">Original illustrations and card designs made for this project. No tracking. No student data. © 2026 Sociobot.</p>
+      <div><a class="brand footer-brand" href="/"><span aria-hidden="true">→</span> Algorithm Cards</a><p>Printable sequencing and debugging activities for one elementary lesson.</p></div>
+      <div class="footer-links"><a href="/demo">Try the demo</a><a href="#builder">Build a kit</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div>
+      <p class="provenance">Original illustration and card designs. Built by Param Factory. Version <span data-build-id>1.1.0</span>.</p>
     </footer>
 
     <script type="module" src="/src/main.ts"></script>

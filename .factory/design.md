@@ -43,8 +43,8 @@ Only state changes move: selected controls press 2 px over 150 ms, preview pages
 
 ## Original asset plan and provenance
 
-- Hero: a generated overhead still life of bold paper algorithm cards, wooden arrow tiles, and a friendly cardboard “bug” marker on a cream classroom table. It explains the physical, collaborative output before the visitor reads. No people, brands, interface screenshot, or embedded text.
-- Functional icons (clock, people, printer, arrows, bug): authored in HTML/CSS or inline SVG with geometric strokes; MIT with the repository.
+- Hero: a generated overhead still life of bold paper algorithm cards, wooden arrow tiles, and a friendly cardboard “bug” marker on a cream classroom table. It explains the physical, collaborative output before the visitor reads. No people, brands, interface screenshot, or embedded text. `public/assets/social-card.jpg` is a 1200×630 center crop derived from this original hero for social metadata; it contains no added text.
+- Functional icons (clock, people, printer, arrows, bug): authored in HTML/CSS or inline SVG with geometric strokes; MIT with the repository. `public/apple-touch-icon.png` is an authored yellow-square arrow badge, rasterized from the same geometric mark as `favicon.svg`.
 - Print card symbols: authored as simple Unicode/geometric marks so they remain crisp and meaningful in monochrome.
 
 ### Hero prompt sheet

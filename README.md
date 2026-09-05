@@ -1,45 +1,51 @@
 # Classroom Algorithm Cards
 
-Classroom Algorithm Cards is a free, print-first generator for elementary teachers and volunteers running a one-off computing lesson. In a few choices it creates a complete 20, 30, or 40 minute unplugged sequencing and debugging pack: a timed facilitation guide, role cards, instruction decks for every team, and challenge cards.
+Print a device-free coding activity for elementary teachers and volunteers. The generator creates a printable guide, role cards, instruction cards, and challenge cards for a 20, 30, or 40 minute lesson.
 
-Live product: <https://classroom-algorithm-cards.sociobot.in>
+Start with the one-click sample at [classroom-algorithm-cards.sociobot.in/demo](https://classroom-algorithm-cards.sociobot.in/demo). It opens a populated 20-minute Shape machine kit for two teams. The sample is free to use without payment or sign-in.
 
-## Who it is for
+## What it does
 
-The kit is designed for an adult who needs to lead one useful computing activity with 3–40 elementary learners and less than ten minutes of setup. It does not require devices, student accounts, prior coding experience, or a single “correct” answer sequence.
+- Creates a printed-card activity without student devices or an account.
+- Prints or saves a populated kit as a browser PDF.
+- Keeps the kit available offline after the first visit.
+- Keeps sample changes separate from normal kit settings in the same browser.
+- Does not send kit settings to another service or load tracking scripts.
 
-Included themes:
+The [/privacy/](/privacy/) and [/terms/](/terms/) pages explain browser storage, offline files, and classroom use.
 
-- Robot rescue — a careful movement-and-map activity
-- Backpack check — an everyday procedure made testable
-- Shape machine — a seated paper-shape puzzle
+## Run and verify
 
-Every theme includes specific safety guidance and facilitator prompts that frame bugs as observable surprises rather than student failures.
-
-## Develop and verify
-
-Requires Node.js 20 or newer.
+Requires Node.js 20 or newer and the Playwright Chromium browser for browser checks.
 
 ```sh
-npm install
-npm run dev
+npm ci
 npm test
 npm run build
+npm run check:artifact-policy
+```
+
+`npm test` runs unit checks, builds `dist/`, validates the generated Static Web Apps configuration, and runs the tagged browser claim suite against the one-click `/demo` sandbox. Each public product claim and its clean command are listed in [`.factory/claims.json`](.factory/claims.json).
+
+For local browsing:
+
+```sh
+npm run dev
 npm run preview
 ```
 
-`npm run build` is the deployment command. It type-checks the TypeScript app and writes the static release to `dist/`, with `dist/index.html` at the root.
+With `npm run serve:dist` running in another terminal, verify the rendered route:
 
-## How it works
+```sh
+./verify-url.sh http://127.0.0.1:4173/demo
+```
 
-The app is Vite plus framework-free TypeScript. Kit content and pagination calculations live in `src/kit.ts`; `src/main.ts` renders the selected pack into semantic print sheets. Browser print styles create deterministic A4 pages and work with “Save as PDF.” A small service worker caches the built shell and hashed Vite assets after the first successful visit, so an opened kit survives a connection drop.
+`npm run build` is the static deployment command. It writes `dist/` with `index.html` at its root and generates `dist/staticwebapp.config.json` with cache, security-header, navigation fallback, and designed-404 rules.
 
-No selection is uploaded or persisted. There are no accounts, analytics, ad scripts, remote fonts, or runtime third-party requests. See the included `/privacy/` and `/terms/` pages.
+## Product files
 
-## Product sources
-
-- `.factory/brief.json` — researched opportunity and scope
-- `.factory/design.md` — neo-brutalist visual system and generated-art provenance
-- `assets/src/` — original image source and exact generation prompt
-
-The software and classroom materials are available under the [MIT License](LICENSE).
+- `.factory/brief.json` — researched scope and audience
+- `.factory/design.md` — visual system and original-art provenance
+- `.factory/demo.md` — sample route and separate storage namespaces
+- `assets/src/` — original hero source and generation prompt
+- `LICENSE` — project license

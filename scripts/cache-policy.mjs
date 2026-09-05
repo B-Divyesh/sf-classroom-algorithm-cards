@@ -22,6 +22,21 @@ export function staticWebAppsConfig(assetPaths) {
       // HTML, sw.js, manifests, and non-fingerprinted public files must be
       // checked again before use so an application update is discoverable.
       'cache-control': 'no-cache',
+      'Content-Security-Policy': "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'",
+      'Permissions-Policy': 'camera=(), geolocation=(), microphone=(), payment=(), usb=()',
+      'Referrer-Policy': 'same-origin',
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'DENY',
+    },
+    navigationFallback: {
+      rewrite: '/index.html',
+      exclude: ['/assets/*', '/404', '/404.html', '/apple-touch-icon.png', '/favicon.svg', '/legal.css', '/privacy/*', '/robots.txt', '/site.webmanifest', '/sitemap.xml', '/sw.js', '/terms/*'],
+    },
+    responseOverrides: {
+      '404': {
+        rewrite: '/404.html',
+        statusCode: 404,
+      },
     },
     routes: assetPaths.map((route) => ({
       route,

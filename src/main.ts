@@ -12,8 +12,86 @@ const preview = requiredElement<HTMLElement>('#print-preview');
 const status = requiredElement<HTMLElement>('#builder-status');
 const offlineNotice = requiredElement<HTMLElement>('#offline-notice');
 const printButton = requiredElement<HTMLButtonElement>('#print-button');
+const demoBanner = requiredElement<HTMLElement>('#demo-banner');
+const resetDemoButton = requiredElement<HTMLButtonElement>('#reset-demo');
+const startRealLink = requiredElement<HTMLAnchorElement>('#start-real');
+const heroTitle = requiredElement<HTMLHeadingElement>('#hero-title');
+const routeAnnouncement = requiredElement<HTMLElement>('#route-announcement');
+
+const siteUrl = 'https://classroom-algorithm-cards.sociobot.in';
+const realStorageKey = 'real:classroom-algorithm-cards:settings';
+const demoStorageKey = 'demo:classroom-algorithm-cards:settings';
+const sampleSettings: KitSettings = { minutes: 20, teams: 2, theme: 'shape-machine', inkSaver: true };
+const demoMode = /^\/demo\/?$/.test(window.location.pathname);
 
 const escapeHtml = (value: string): string => value.replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[char] ?? char);
+
+function setMeta(selector: string, content: string): void {
+  const element = document.querySelector<HTMLMetaElement>(selector);
+  if (element) element.content = content;
+}
+
+function setRouteMetadata(): void {
+  const route = demoMode ? '/demo' : '/';
+  const title = demoMode ? 'Demo — Classroom Algorithm Cards' : 'Classroom Algorithm Cards — Print an unplugged coding lesson';
+  const description = demoMode
+    ? 'Try a sample 20-minute printable sequencing and debugging activity for two teams.'
+    : 'Print a device-free sequencing and debugging activity for elementary teachers and volunteers.';
+  document.title = title;
+  setMeta('meta[name="description"]', description);
+  setMeta('meta[property="og:title"]', title);
+  setMeta('meta[property="og:description"]', description);
+  setMeta('meta[property="og:url"]', `${siteUrl}${route}`);
+  setMeta('meta[name="twitter:title"]', title);
+  setMeta('meta[name="twitter:description"]', description);
+  const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+  if (canonical) canonical.href = `${siteUrl}${route}`;
+  if (demoMode) {
+    heroTitle.textContent = 'Sample classroom kit';
+    routeAnnouncement.textContent = 'Demo opened.';
+  }
+}
+
+function storageKey(): string {
+  return demoMode ? demoStorageKey : realStorageKey;
+}
+
+function loadSavedSettings(): KitSettings {
+  try {
+    const raw = window.localStorage.getItem(storageKey());
+    if (!raw) return demoMode ? sampleSettings : sanitizeSettings({});
+    return sanitizeSettings(JSON.parse(raw) as Partial<KitSettings>);
+  } catch {
+    return demoMode ? sampleSettings : sanitizeSettings({});
+  }
+}
+
+function saveSettings(settings: KitSettings): void {
+  try {
+    window.localStorage.setItem(storageKey(), JSON.stringify(settings));
+  } catch {
+    status.textContent = 'Your kit is ready. This browser cannot save its settings.';
+  }
+}
+
+function clearDemoSettings(): void {
+  try {
+    window.localStorage.removeItem(demoStorageKey);
+  } catch {
+    // The demo still works when browser storage is unavailable.
+  }
+}
+
+function applySettings(settings: KitSettings): void {
+  const minute = form.querySelector<HTMLInputElement>(`input[name="minutes"][value="${settings.minutes}"]`);
+  const theme = form.querySelector<HTMLInputElement>(`input[name="theme"][value="${settings.theme}"]`);
+  const teams = form.elements.namedItem('teams');
+  const inkSaver = form.elements.namedItem('inkSaver');
+  if (minute) minute.checked = true;
+  if (theme) theme.checked = true;
+  if (teams instanceof HTMLInputElement) teams.value = String(settings.teams);
+  if (inkSaver instanceof HTMLInputElement) inkSaver.checked = settings.inkSaver;
+}
 
 function readSettings(): KitSettings {
   const data = new FormData(form);
@@ -122,6 +200,7 @@ function render(): void {
   status.textContent = `Ready: ${count} printable ${count === 1 ? 'page' : 'pages'} for ${settings.teams} ${settings.teams === 1 ? 'team' : 'teams'}.`;
   const teamInput = form.elements.namedItem('teams');
   if (teamInput instanceof HTMLInputElement) teamInput.value = String(settings.teams);
+  saveSettings(settings);
 }
 
 form.addEventListener('change', render);
@@ -134,6 +213,15 @@ printButton.addEventListener('click', () => {
   window.print();
 });
 
+resetDemoButton.addEventListener('click', () => {
+  clearDemoSettings();
+  applySettings(sampleSettings);
+  render();
+  status.textContent = 'Sample reset: 20-minute Shape machine kit for two teams.';
+});
+
+startRealLink.addEventListener('click', clearDemoSettings);
+
 function updateNetworkState(): void {
   const offline = !navigator.onLine;
   offlineNotice.hidden = !offline;
@@ -143,6 +231,11 @@ function updateNetworkState(): void {
 window.addEventListener('online', updateNetworkState);
 window.addEventListener('offline', updateNetworkState);
 updateNetworkState();
+setRouteMetadata();
+if (!demoMode) clearDemoSettings();
+document.body.classList.toggle('demo-mode', demoMode);
+demoBanner.hidden = !demoMode;
+applySettings(loadSavedSettings());
 render();
 
 if ('serviceWorker' in navigator && import.meta.env.PROD) {

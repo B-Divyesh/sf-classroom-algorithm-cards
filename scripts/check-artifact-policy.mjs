@@ -17,6 +17,23 @@ if (config.globalHeaders?.['cache-control'] !== 'no-cache') {
   throw new Error('Expected global cache-control: no-cache so HTML and sw.js revalidate.');
 }
 
+const headers = config.globalHeaders ?? {};
+if (!headers['Content-Security-Policy']?.includes("frame-ancestors 'none'")) {
+  throw new Error('Expected a restrictive Content-Security-Policy with frame-ancestors in generated static configuration.');
+}
+
+if (!headers['Permissions-Policy'] || headers['X-Frame-Options'] !== 'DENY') {
+  throw new Error('Expected Permissions-Policy and X-Frame-Options headers in generated static configuration.');
+}
+
+if (config.navigationFallback?.rewrite !== '/index.html' || !config.navigationFallback.exclude?.includes('/404')) {
+  throw new Error('Expected an index navigation fallback that leaves the designed 404 route reachable.');
+}
+
+if (config.responseOverrides?.['404']?.rewrite !== '/404.html' || config.responseOverrides?.['404']?.statusCode !== 404) {
+  throw new Error('Expected responseOverrides to render /404.html with HTTP 404.');
+}
+
 for (const asset of assets) {
   if (routes.get(asset) !== immutable) {
     throw new Error(`Expected ${asset} to be immutable for one year; found ${routes.get(asset) ?? 'no route'}.`);

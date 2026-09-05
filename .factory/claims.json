@@ -1,0 +1,58 @@
+[
+  {
+    "id": "complete-printable-kit",
+    "claim": "Creates a printable guide, role cards, instruction cards, and challenge cards.",
+    "where": "landing page, README",
+    "test": "npm run test:claims -- --grep @claim:complete-printable-kit",
+    "sandbox": "Fresh browser context; open the landing page, choose Try it with sample data, and count the populated sample output."
+  },
+  {
+    "id": "lesson-lengths",
+    "claim": "Creates activities in 20, 30, or 40 minutes.",
+    "where": "builder controls, README",
+    "test": "npm run test:claims -- --grep @claim:lesson-lengths",
+    "sandbox": "Fresh demo; select each time and verify the printed guide and number of challenge cards."
+  },
+  {
+    "id": "printed-cards-activity",
+    "claim": "Provides a printed-card activity without student devices or an account.",
+    "where": "landing headline and product description, README",
+    "test": "npm run test:claims -- --grep @claim:printed-cards-activity",
+    "sandbox": "Fresh demo; change the activity and verify a print-ready guide and cards are available without a credential step."
+  },
+  {
+    "id": "free-no-account",
+    "claim": "The sample kit is free to use without payment or sign-in.",
+    "where": "landing facts, privacy page, README",
+    "test": "npm run test:claims -- --grep @claim:free-no-account",
+    "sandbox": "Fresh browser context; open and change the sample kit, then verify the populated output and print action without an account flow."
+  },
+  {
+    "id": "browser-pdf",
+    "claim": "Print or save the kit as a PDF from the browser.",
+    "where": "builder button, README",
+    "test": "npm run test:claims -- --grep @claim:browser-pdf",
+    "sandbox": "Fresh demo; apply the shipped print CSS and create an A4 Chromium PDF, then verify it has populated PDF pages."
+  },
+  {
+    "id": "offline-after-first-visit",
+    "claim": "Works offline after the first visit.",
+    "where": "landing facts, privacy page, README",
+    "test": "npm run test:claims -- --grep @claim:offline-after-first-visit",
+    "sandbox": "A new browser context opens /demo online until controlled by the service worker, sets offline mode, reloads /demo, and verifies the sample output."
+  },
+  {
+    "id": "demo-isolation",
+    "claim": "Sample changes stay separate from your saved kit.",
+    "where": "landing facts, builder introduction, privacy page, README",
+    "test": "npm run test:claims -- --grep @claim:demo-isolation",
+    "sandbox": "Fresh browser context; save a normal team count, change the demo count, choose Start for real, and verify the normal count returns."
+  },
+  {
+    "id": "private-browser-choices",
+    "claim": "The app does not send kit settings to another service or load tracking scripts.",
+    "where": "privacy page, README",
+    "test": "npm run test:claims -- --grep @claim:private-browser-choices",
+    "sandbox": "Fresh demo browser context records every request while settings change and requires same-origin GET requests only."
+  }
+]

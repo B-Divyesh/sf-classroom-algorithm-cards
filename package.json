@@ -7,10 +7,14 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build && node scripts/emit-swa-config.mjs",
     "check:artifact-policy": "node scripts/check-artifact-policy.mjs",
-    "test": "vitest run && npm run build && npm run check:artifact-policy",
+    "test:unit": "vitest run src/kit.test.ts",
+    "test:claims": "npm run build && playwright test",
+    "test": "npm run test:unit && npm run build && npm run check:artifact-policy && npm run test:claims",
+    "serve:dist": "node scripts/serve-dist.mjs",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@playwright/test": "1.58.2",
     "@types/node": "^24.3.0",
     "axe-core": "^4.10.3",
     "typescript": "^5.9.2",

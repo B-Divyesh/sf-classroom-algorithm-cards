@@ -1,0 +1,9 @@
+{
+  "name": "Classroom Algorithm Cards",
+  "short_name": "Algorithm Cards",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4efdf",
+  "theme_color": "#f4efdf",
+  "icons": [{ "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }]
+}
