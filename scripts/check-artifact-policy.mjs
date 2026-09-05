@@ -34,6 +34,10 @@ if (config.responseOverrides?.['404']?.rewrite !== '/404.html' || config.respons
   throw new Error('Expected responseOverrides to render /404.html with HTTP 404.');
 }
 
+if (!config.routes?.some((route) => route.route === '/404' && route.statusCode === 404 && !route.rewrite)) {
+  throw new Error('Expected a status-only /404 route so Azure reaches the designed 404 response override.');
+}
+
 for (const asset of assets) {
   if (routes.get(asset) !== immutable) {
     throw new Error(`Expected ${asset} to be immutable for one year; found ${routes.get(asset) ?? 'no route'}.`);

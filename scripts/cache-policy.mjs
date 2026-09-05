@@ -38,12 +38,17 @@ export function staticWebAppsConfig(assetPaths) {
         statusCode: 404,
       },
     },
-    routes: assetPaths.map((route) => ({
-      route,
-      headers: {
-        // These paths include Vite's content hash and are never overwritten.
-        'cache-control': 'public, max-age=31536000, immutable',
-      },
-    })),
+    routes: [
+      // This status-only route intentionally flows through responseOverrides.
+      // Azure rejects a route that combines statusCode and rewrite.
+      { route: '/404', statusCode: 404 },
+      ...assetPaths.map((route) => ({
+        route,
+        headers: {
+          // These paths include Vite's content hash and are never overwritten.
+          'cache-control': 'public, max-age=31536000, immutable',
+        },
+      })),
+    ],
   };
 }
