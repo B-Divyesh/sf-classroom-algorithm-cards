@@ -16,7 +16,7 @@
 - Put the live builder/preview before **How it works** and added a plain-language **Privacy and classroom use** landing section.
 - Raised reviewed UI copy to at least 16 px, made header/footer wordmarks and 404 recovery links 44 px targets, and tested mobile target dimensions.
 - Moved focus to the new heading after demo/real navigation and after Back/Forward restoration, with route announcements. The first Tab in a fresh context still reaches the skip link.
-- Added the promised original-hero AVIF derivative (17,781 bytes), used it in the responsive picture, precached it for offline use, and mapped it to `image/avif` in Static Web Apps.
+- Added the promised original-hero AVIF derivative (18,063 bytes on disk), used it in the responsive picture, precached it for offline use, and mapped it to `image/avif` in Static Web Apps.
 - Updated the copy audit, visual thesis, README deployment description, and catalog-description evidence. No paid offer or external integration applies: the researched brief specifies a free product.
 
 ## Verification
