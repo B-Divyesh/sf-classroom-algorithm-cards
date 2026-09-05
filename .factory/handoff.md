@@ -1,5 +1,16 @@
 # Handoff — Classroom Algorithm Cards
 
+## Independent verification 3
+
+- Verdict: **PASS** — zero findings and zero untested public claims.
+- Implementation reviewed: `def411b681e1f81e600f64d2a92f5da5da331402`.
+- Documentation base reviewed: `b5ad13ce01ba89d76bfa5c7101c402fb43f4a342`.
+- Full evidence: `.factory/verification-3.md`.
+
+Fresh detached-clone verification passed `npm ci`, `npm test`, `npm run build`, `npm run check:artifact-policy`, `verify-url.sh`, and all eight declared claim commands separately. The production `/`, `/demo`, legal routes, and designed HTTP 404 were exercised at desktop and phone widths. Live HTML, CSS, and JS are byte-identical to the `def411b` build. The sample is populated, labeled, resettable, isolated from normal browser settings, printable, and available after a first online visit when offline.
+
+The remaining product-learning gap is unchanged: 15 educators have not yet run the activity in classrooms. It is not claimed as complete.
+
 ## Release
 
 - Implementation candidate: `def411b681e1f81e600f64d2a92f5da5da331402` (`fix: remove duplicate preview landmark`)
