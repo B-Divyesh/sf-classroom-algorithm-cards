@@ -65,7 +65,7 @@ const server = createServer(async (request, response) => {
   const requestUrl = new URL(request.url ?? '/', `http://${host}:${port}`);
   const pathname = decodeURIComponent(requestUrl.pathname);
 
-  if (pathname === '/demo' || pathname === '/demo/') {
+  if (pathname === '/demo') {
     sendFile(response, path.join(distDirectory, 'index.html'));
     return;
   }

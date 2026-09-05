@@ -38,7 +38,6 @@ export function staticWebAppsConfig(assetPaths) {
       // The app only owns this explicit client route. Leaving navigation
       // fallback disabled lets typoed and stale paths reach the real 404.
       { route: '/demo', rewrite: '/index.html' },
-      { route: '/demo/', rewrite: '/index.html' },
       // This status-only route intentionally flows through responseOverrides.
       // Azure rejects a route that combines statusCode and rewrite.
       { route: '/404', statusCode: 404 },
