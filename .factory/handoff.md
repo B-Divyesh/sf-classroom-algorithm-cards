@@ -1,17 +1,24 @@
 # Handoff — Classroom Algorithm Cards
 
-## Verification status: PASS
+## Review status: FAIL
 
-Independent verification on 2026-08-27 passed candidate `91bd73f9501439ddf37b0ab5d8b4bf689092a9a3` and its deployed static site at `https://classroom-algorithm-cards.sociobot.in/`. The full evidence is in `.factory/verification-2.md`; `.factory/verification.md` is retained as the prior candidate's historical failure report.
+Review 1 on 2026-09-05 found **8 findings and 9 untested public claims**. The current implementation reviewed is `54fe86a1f6048b34b9b71d48ad5d4b9c2ed8c5fb`; the current documentation commit is `6adedd94a1fe7a5ebfb046fdffce3ade68ba19cb`. See `.factory/review-1.md` for complete evidence. The earlier verification reports remain historical records only.
 
 ## What was verified
 
-- Clean detached checkout, `npm ci`, `npm test` (6/6), TypeScript check, production build, and generated static cache-policy check all passed.
-- The live document and its hashed JavaScript/CSS are byte-identical to the clean build.
-- The kit generator correctly creates printable guides, role cards, instruction decks, and 20/30/40-minute challenges for all three unplugged activities, including activity-specific safety and multiple-valid-answer facilitation language.
-- Normal, boundary, malformed, and recovery choices; desktop, 390 px mobile, keyboard-only operation, print-to-PDF, reduced motion, no-error browser loads, and offline/update service-worker behavior passed.
-- axe-core found 0 serious/critical findings at desktop and mobile. Local production-preview Lighthouse mobile: performance 99, accessibility 100, best practices 100, SEO 92; LCP 1.245 s, TBT 122 ms, CLS 0.
-- No tracking or third-party runtime traffic was observed. Live HTTPS, HSTS, no-cache HTML/SW, and immutable hashed-asset headers are in place. Initial JS/CSS and image sizes are within the static-product budgets.
+- A fresh detached checkout passed `npm ci`, `npm test` (6/6), `npm run build`, and `npm run check:artifact-policy`.
+- Live HTML, JavaScript, and CSS are byte-identical to the reviewed implementation. Immutable caching for hashed assets is now correct.
+- The live generator produced the expected default and populated printable kits at desktop and 390 px phone widths; invalid values recovered, keyboard selection worked, a populated A4 PDF was produced, reduced motion worked, and a post-first-load offline reload worked.
+- Playwright axe-core found zero WCAG 2 A/AA and 2.1 AA violations. There were no browser console errors in the tested normal flow.
+
+## What remains before acceptance
+
+- Implement the one-click `/demo` sandbox with realistic sample data, a persistent demo label, Reset demo, Start for real, isolated storage, and `.factory/demo.md`.
+- Add `.factory/claims.json` and one tagged observable demo test for every public claim. The current count is nine untested claims.
+- Replace metaphor copy with a direct job headline, name teachers/volunteers in the first screen, and make the first action the sample-data action.
+- Ship a product-styled 404 and complete required route metadata, `robots.txt`, `sitemap.xml`, and Static Web Apps routing configuration.
+- Add CSP, anti-framing, Permissions Policy, consistent legal-page navigation/footer, and the required URL verification helper.
+- Validate the brief’s 15-educator and under-ten-minute success measure with real classroom research.
 
 ## Run and verify
 
@@ -19,13 +26,7 @@ Independent verification on 2026-08-27 passed candidate `91bd73f9501439ddf37b0ab
 npm ci
 npm test
 npm run build
-npm run preview
+npm run check:artifact-policy
 ```
 
-Deploy `dist/`; `dist/index.html` is its root entrypoint. `npm run build` also emits `dist/staticwebapp.config.json`, which gives content-hashed JS/CSS a one-year immutable policy while HTML and the service worker revalidate.
-
-## Known gaps / next steps
-
-- Add a restrictive Content Security Policy, an anti-framing policy, and a suitable Permissions Policy. This is low-severity defense-in-depth, not a release blocker for the present static app.
-- Validate the brief's success metric with at least 15 real educators and measure whether setup remains under ten minutes.
-- Before a high-volume school rollout, sample the generated A4 kit on the target browser/printer fleet, especially US Letter auto-scaling configurations.
+`npm run build` produces `dist/` with `dist/index.html` at its root.
