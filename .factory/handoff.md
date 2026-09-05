@@ -1,48 +1,27 @@
-# Handoff — Classroom Algorithm Cards
-
-## Review 2
-
-- Verdict: **FAIL** — 7 findings and 5 untested public claims.
-- Implementation reviewed: `def411b681e1f81e600f64d2a92f5da5da331402`.
-- Documentation base: `bd040efe8e6295a4f71a1a479518fe3f211c359e`.
-- Full report: `.factory/review-2.md`.
-
-The core product, all eight declared claim commands, clean build, live candidate parity, one-click isolated demo, PDF, offline reload, keyboard path, axe audits, security headers, and performance checks passed. Review 2 remains a FAIL because five additional public statements lack complete tagged tests; unknown extensionless routes bypass the designed 404; the landing skeleton is out of order and lacks the required privacy/non-goals section; touch targets and several text styles are undersized; demo navigation does not focus the new h1; and the promised AVIF derivative is absent.
-
-No product code was changed during this review.
-
-## Independent verification 3
-
-- Verdict: **PASS** — zero findings and zero untested public claims.
-- Implementation reviewed: `def411b681e1f81e600f64d2a92f5da5da331402`.
-- Documentation base reviewed: `b5ad13ce01ba89d76bfa5c7101c402fb43f4a342`.
-- Full evidence: `.factory/verification-3.md`.
-
-Fresh detached-clone verification passed `npm ci`, `npm test`, `npm run build`, `npm run check:artifact-policy`, `verify-url.sh`, and all eight declared claim commands separately. The production `/`, `/demo`, legal routes, and designed HTTP 404 were exercised at desktop and phone widths. Live HTML, CSS, and JS are byte-identical to the `def411b` build. The sample is populated, labeled, resettable, isolated from normal browser settings, printable, and available after a first online visit when offline.
-
-The remaining product-learning gap is unchanged: 15 educators have not yet run the activity in classrooms. It is not claimed as complete.
+# Handoff — Classroom Algorithm Cards repair 3
 
 ## Release
 
-- Implementation candidate: `def411b681e1f81e600f64d2a92f5da5da331402` (`fix: remove duplicate preview landmark`)
-- Product feature and documentation candidate: `2654b66879e4df1d6b0f9fb14c6843d4709d0613` (`feat: add isolated classroom kit demo`)
-- Routing repair included in: `e416ac44b9066d9b9d3aa552e6bfd40c55bde539` (`fix: return HTTP 404 for designed error page`)
+- Implementation candidate: `2bd7499161ccdd02e794e75cce25cda11fc55d1e` (`fix: serve hero AVIF with its image type`)
+- User-visible repair commit: `4d74771f81fa22925ea3c037d9cd443f4d2443e9`
+- Static-route repair commit: `c45462b6b7590391291ce2fa75fef3457bd3e66b`
+- Previous review documentation base: `eaf21780c8bc9667a24164c494e879128512d928`
 - Live URL: <https://classroom-algorithm-cards.sociobot.in>
-- Deployment: production Static Web Apps deployment completed from `dist/` with the product app name on 2026-09-05.
+- Deployment: production Azure Static Web Apps deployment from `dist/` completed on 2026-09-05. The first upload was rejected before upload because Azure treats `/demo/` as a duplicate of `/demo`; the explicit route was corrected and the final deployment succeeded.
 
 ## What changed
 
-- Added `/demo`, a one-click 20-minute Shape machine sample for two teams. Its banner stays visible, Reset demo restores the shipped sample, and Start for real discards the demo namespace.
-- Separated normal and demo settings into `real:classroom-algorithm-cards:settings` and `demo:classroom-algorithm-cards:settings`. Demo never reads or writes the real key.
-- Rewrote the first screen in plain language: it names printing a coding activity, elementary teachers and volunteers, and **Try it with sample data** as the first action.
-- Added `.factory/claims.json` with eight public claims and one tagged browser outcome test for each. Removed the unsupported “under ten minutes” setup and A4/Letter promises.
-- Added route metadata, canonical/OG/Twitter cards, social image, apple-touch icon, robots, sitemap, manifest, SPA fallback, restrictive CSP, Permissions Policy, anti-framing, and a product-styled 404 that returns HTTP 404.
-- Gave Privacy and Terms the common header, navigation, footer, build identifier, and route-specific metadata. Added `verify-url.sh` for title, language, main, h1, alt, and console checks.
-- Added a Playwright browser suite for demo output, minutes, PDF printing, offline reload, namespace isolation, request privacy, responsive layout, keyboard focus, reduced motion, route structure, headers, 404, and axe.
+- Closed all five untested public claims from Review 2. `.factory/claims.json` now has 13 claims, each backed by one tagged browser outcome test. The new proof covers ink-saver card output, all five role duties, safety guidance for every activity, removal of demo storage, and Cache Storage containing app files only.
+- Made `/demo` the only explicit client route and removed the catch-all navigation fallback. Arbitrary extensionless paths now receive the product-styled `404.html` with HTTP 404; the local test server has the same behavior.
+- Put the live builder/preview before **How it works** and added a plain-language **Privacy and classroom use** landing section.
+- Raised reviewed UI copy to at least 16 px, made header/footer wordmarks and 404 recovery links 44 px targets, and tested mobile target dimensions.
+- Moved focus to the new heading after demo/real navigation and after Back/Forward restoration, with route announcements. The first Tab in a fresh context still reaches the skip link.
+- Added the promised original-hero AVIF derivative (17,781 bytes), used it in the responsive picture, precached it for offline use, and mapped it to `image/avif` in Static Web Apps.
+- Updated the copy audit, visual thesis, README deployment description, and catalog-description evidence. No paid offer or external integration applies: the researched brief specifies a free product.
 
 ## Verification
 
-From a clean `npm ci` setup:
+From the documented clean setup (`npm ci`), the final candidate passed:
 
 ```sh
 npm test
@@ -50,28 +29,30 @@ npm run build
 npm run check:artifact-policy
 ```
 
-All pass. `npm test` reports 6 unit tests and 10 browser/quality tests. All eight commands declared in `.factory/claims.json` were also run individually and passed.
+- `npm test`: 6 unit tests plus 15 browser/quality checks passed.
+- Every one of the 13 commands in `.factory/claims.json` was run separately and passed.
+- `verify-url.sh` passed locally and on live `/`, `/demo`, `/privacy/`, `/terms/`, and an arbitrary unknown URL. The unknown URL deliberately returns HTTP 404 with the designed product page.
+- Playwright-injected axe-core found zero violations (including zero serious/critical) on live `/`, `/demo`, `/privacy/`, `/terms/`, and the 404 at desktop and 390 px phone widths. This is the supported axe check for the supplied Chromium.
+- Fresh live desktop and phone contexts showed the job “Print a device-free coding activity,” the elementary teacher/volunteer audience, and **Try it with sample data** before scrolling, with no horizontal overflow or console errors.
+- The fresh live demo showed its persistent sample label and a populated 20-minute Shape machine kit: 1 guide, 1 challenge, 10 role cards, 20 instruction cards, and 7 printable pages. Reset restores the shipped sample; leaving demo restored a normal 3-team kit and removed the demo storage key.
+- A fresh live service-worker context reloaded `/demo` offline with the label, seven-page sample, and offline notice intact.
+- Live `index.html`, JS, and CSS SHA-256 values match the final local build. Current initial JS is 14.47 kB (5.69 kB gzip); CSS is 18.53 kB (4.53 kB gzip); the AVIF hero is 18,063 bytes on disk including its container.
+- The live AVIF response is `Content-Type: image/avif`; documents revalidate and content-hashed JS/CSS are configured immutable for one year.
 
-Live fresh Chromium checks at desktop `1366×900` and phone `390×844` confirmed:
+## Review 2 disposition
 
-- First screen: job “Print a device-free coding activity”; audience “elementary teachers and volunteers”; first action “Try it with sample data.”
-- `/demo` renders its persistent label and 7-page sample: 1 guide, 1 challenge, 10 role cards, and 20 instruction cards. Reset restores the sample.
-- No console or page errors; no horizontal overflow at either width; live axe-core had zero violations after the final landmark repair.
-- HTTPS `/`, `/demo`, `/privacy/`, `/terms/`, and `/404` have titles, `lang`, one h1, one main, and valid image alt text. `/404` is deliberately HTTP 404 and shows the product page, not Azure’s generic error.
-- Live hashed JS and CSS use `public, max-age=31536000, immutable`; documents revalidate; CSP includes `frame-ancestors 'none'`; Permissions Policy and `X-Frame-Options: DENY` are present.
+| Finding | Disposition |
+| --- | --- |
+| Five incomplete claims | Fixed with five claim entries and outcome checks. |
+| Unknown paths rendered home | Fixed; arbitrary unknown path is HTTP 404 with product recovery links. |
+| Preview after How it works / missing landing privacy section | Fixed; builder/preview is second and privacy/classroom-use is fourth. |
+| Targets below 44 px | Fixed and measured in the browser. |
+| Text below 16 px | Fixed for reviewed interface and footer styles, with computed-size regression checks. |
+| Demo navigation focus | Fixed for direct navigation and Back/Forward. |
+| Missing AVIF | Fixed with rendered AVIF output and explicit MIME type. |
 
-`npx @axe-core/cli` was attempted, but its downloaded ChromeDriver supports Chrome 152 while the supplied Playwright Chromium is 145. The included Playwright/axe-core audit runs against that installed Chromium and passes with zero violations.
-
-## Run locally
-
-```sh
-npm ci
-npm test
-npm run build
-npm run serve:dist
-./verify-url.sh http://127.0.0.1:4173/demo
-```
+Earlier resolved findings remain resolved: the one-click isolated demo, designed 404, metadata/discovery, security headers, legal skeleton, immutable hashed assets, skip link, reduced-motion behavior, and duplicate-landmark repair all pass the current suite and live checks.
 
 ## Known gap
 
-The brief’s real-world success measure—15 educators running a lesson and reporting setup time—has not been validated. It needs classroom research and is not represented as a completed product claim.
+The brief’s future research measure—15 educators completing a one-period activity and reporting setup time—has not been run. The site does not claim that result.
